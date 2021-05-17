@@ -3,16 +3,16 @@
 		<title>Login</title>
 	</head>
 	<body>
-		<form acction="results.html" method="GET">
+		<form action="/login" method="POST">
 			<div>
-				<lable>Username</lable>
+				<lable for="username">Username:</lable>
 				<input type="text" name="username" size="32" required>
 			</div>
 			<div>
-				<lable>Password</lable>
+				<lable for="password">Password:</lable>
 				<input type="password" name="password" size="32" required>
 			</div>
-			<button type="submit" name="submit">Submit</button>
+			<input type="submit" value="login">
 		</form>
 	</body>
 </html>
