@@ -1,26 +1,23 @@
-const http = require('http');
-const fs = require('fs');
+const express = require('express');
+const path = require('path');
 
 const port = 3000
+const app = express();
 
-const server =  http.createServer(function(req, res) {
-	res.writeHead(200, { 'Content-Type': 'text/html' })
-	fs.readFile('index.html', function(error, data) {
-		if (error) {
-			res.writeHead(404);
-			res.write('Error: 404');
-		} else {
-			res.write(data);
-		}
-		res.end()
-	});
+
+// setup static and middleware
+app.use(express.static('./public'));
+
+app.get('/view', (req, res) => {
+//	res.status(200).send('Hello world');
+	res.status(200).sendFile(path.resolve(__dirname, './view/index.html'));
 });
 
+//404 page
+app.all('*', (req,res)=>{
+	res.status(404).send('404 Not Found');
+});
 
-server.listen(port, function(error) {
-	if (error) {
-		console.log("Something went wrong", error);
-	} else {
-		console.log("Server is listening on port " + port);
-	}
+app.listen(port, function(){
+	console.log('Server started on port :' + port);
 });

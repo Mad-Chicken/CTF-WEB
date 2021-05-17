@@ -4,7 +4,7 @@ WORKDIR /home/node/
 RUN apt-get update
 
 RUN npm init -y
-RUN npm install http
+RUN npm install --save express
 COPY . .
 
 CMD ["node","/home/node/app.js"]
