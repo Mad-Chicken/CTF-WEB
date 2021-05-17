@@ -1,0 +1,17 @@
+version: "3"
+
+# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+services:
+  ctf-web:
+    container_name: ctf-web
+    image: ctf-web
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+#    volumes:
+#      - myapp:/home/node/files
+    restart: unless-stopped
+   
+#volumes:
+#  myapp:
