@@ -5,11 +5,11 @@ const bodyParser = require('body-parser');
 const port = 3000
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
-
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/public/html/index.html');
 });
+
+app.use(express.static('public/css'))
 
 //////// USERS ////////
 
@@ -62,7 +62,7 @@ app.get('/robots.txt', (req, res) => {
 app.all('*', (req,res)=>{
 	res.status(404);
 	res.sendFile(__dirname + '/public/html/fourOfour.html');
-	res.sendFile(__dirname + '/public/html/fourOfour.css');
+//	res.sendFile(__dirname + '/public/html/fourOfour.css');
 });
 
 //////// Listener ////////
