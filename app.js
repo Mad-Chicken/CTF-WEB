@@ -23,16 +23,15 @@ app.get('/login', (req, res) => {
 
 // login post //
 app.post('/login', (req, res) => {
-	fs.readFile(__dirname + 'private/login.cred', 'utf8', function(err, data) {
-		if (err) throw err;
-		console.log(data);
-		console.log(data.foobar);
-	  });
-	if (req.body.username == "foobar" && req.body.password == "password") {
+	var userData = JSON.parse(fs.readFileSync(__dirname + '/private/login.cred','utf8'));
+	var username = req.body.username;
+	var password = req.body.password;
+	if(username in userData && password == userData[username]) {
 		res.cookie('SID', 'loginComplete')
 		res.status(200).redirect('/view');
 	} else {
 		res.status(403).sendFile(__dirname + '/public/html/login/index.html');
+
 	}
 });
 
