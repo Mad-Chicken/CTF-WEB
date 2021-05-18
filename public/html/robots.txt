@@ -1,1 +1,14 @@
-robots
+#        _
+#       [ ]
+#      (   )
+#       |>|
+#    __/===\__
+#   //| o=o |\\
+# <]  | o=o |  [>
+#     \=====/
+#    / / | \ \
+#   <_________>
+
+User-agent: *
+Disallow: /
+Disallow: /admin/page.html

@@ -12,6 +12,3 @@ services:
 #    volumes:
 #      - myapp:/home/node/files
     restart: unless-stopped
-   
-#volumes:
-#  myapp:
