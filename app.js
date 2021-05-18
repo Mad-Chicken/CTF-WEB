@@ -11,7 +11,6 @@ app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/public/html/index.html');
 });
 
-
 //////// USERS ////////
 
 // login //
@@ -63,6 +62,7 @@ app.get('/robots.txt', (req, res) => {
 app.all('*', (req,res)=>{
 	res.status(404);
 	res.sendFile(__dirname + '/public/html/fourOfour.html');
+	res.sendFile(__dirname + '/public/html/fourOfour.css');
 });
 
 //////// Listener ////////
