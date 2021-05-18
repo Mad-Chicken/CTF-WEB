@@ -1,9 +1,11 @@
 const express = require('express');
-//const path = require('path');
-const bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+//const bodyParser = require('body-parser');
 
 const port = 3000
 const app = express();
+app.use(cookieParser());
+
 
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/public/html/index.html');
@@ -16,23 +18,11 @@ app.use(express.static('public/css'))
 // login //
 app.get('/login', (req, res) => {
 	res.status(200).sendFile(__dirname + '/public/html/login/index.html');
+	res.cookie('key', 'value')
 });
 
 // login post //
 app.post('/login', (req, res) => {
-	let username = req.body.username;
-	let password = req.body.password;
-	console.log(`Username: ${username} Password: ${password}`);
-	res.status(200).send(`Username: ${username} Password: ${password}`);
-});
-
-// regester //
-app.get('/register', (req, res) => {
-    res.status(200).sendFile(__dirname + '/public/html/register/index.html');
-});
-
-// regester post //
-app.post('/register', (req, res) => {
 	let username = req.body.username;
 	let password = req.body.password;
 	console.log(`Username: ${username} Password: ${password}`);
@@ -45,11 +35,13 @@ app.post('/register', (req, res) => {
 // index //
 app.get('/view', (req, res) => {
     res.status(200).sendFile(__dirname + '/public/html/view/index.html');
+	console.log('Cookies: ', req.cookies);
+	res.clearCookie('key');
 });
 
 // submit //
 app.get('/view/submit', (req, res) => {
-        res.status(200).sendFile(__dirname, './public/html/view/submit/index.html');
+    res.status(200).sendFile(__dirname, './public/html/view/submit/index.html');
 });
 
 
@@ -62,7 +54,6 @@ app.get('/robots.txt', (req, res) => {
 app.all('*', (req,res)=>{
 	res.status(404);
 	res.sendFile(__dirname + '/public/html/fourOfour.html');
-//	res.sendFile(__dirname + '/public/html/fourOfour.css');
 });
 
 //////// Listener ////////
