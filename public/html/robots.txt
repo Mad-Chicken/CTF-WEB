@@ -8,7 +8,6 @@
 #     \=====/
 #    / / | \ \
 #   <_________>
-
 User-agent: *
 Disallow: /
 Disallow: /admin/page.html
