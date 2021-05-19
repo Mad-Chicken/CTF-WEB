@@ -26,30 +26,36 @@ app.use(express.static('public/css'))
 
 // login //
 app.get('/login', (req, res) => {
+	res.clearCookie('FID');
 	res.status(200).sendFile(__dirname + '/public/html/login/index.html');
 });
 
 // login post //
 app.post('/login', (req, res) => {
 	var userData = JSON.parse(fs.readFileSync(__dirname + '/private/login.cred','utf8'));
-	if (req.body.username && req.body.password) {
-		console.log(req.session);
-		if (req.session.authenticated) {
-			res.status(200).redirect('/view');
-		} else {
-			if (req.body.username in userData && req.body.password == userData[req.body.username]) {
-				if (req.body.username === "admin" && req.body.password == userData[req.body.username]) {
-					req.session.authenticatedAdmin = true;
-				}
-				req.session.authenticated = true;
-				res.status(200).redirect('/');
-			} else {
-				res.status(403).sendFile(__dirname + '/public/html/login/index.html');
-			}
-		}
+	if (req.session.authenticated) {
+		res.status(200).redirect('/view');
 	} else {
-		res.status(403).sendFile(__dirname + '/public/html/login/index.html');
+		if (req.body.username in userData && req.body.password == userData[req.body.username]) {
+			if (req.body.username === "admin" && req.body.password == userData[req.body.username]) {
+				req.session.authenticatedAdmin = true;
+			} else if (req.body.username === "rick") {
+				res.status(418)
+				res.redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ?autoplay=1');
+			}
+			req.session.authenticated = true;
+			res.status(200)
+			res.redirect('/view');
+		} else {
+			res.status(403).sendFile(__dirname + '/public/html/login/index.html');
+		}
 	}
+});
+
+app.post('/resetpassword', (req, res) => {
+	res.cookie('FID', 'flag(c0ok!e_m0n$ter_e@t_c0ok!e)', {maxAge: 12000});
+	res.status(200)
+	res.redirect('/');
 });
 
 
