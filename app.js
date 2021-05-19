@@ -20,14 +20,20 @@ app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/public/html/index.html');
 });
 
-app.use(express.static('public/css'))
+// public css //
+app.use(express.static('public/css'));
+app.use(express.static('public/images'))
 
 //////// USERS ////////
 
 // login //
 app.get('/login', (req, res) => {
 	res.clearCookie('FID');
-	res.status(200).sendFile(__dirname + '/public/html/login/index.html');
+	if (req.session.authenticated) {
+		res.status(200).redirect('/view');
+	} else {
+		res.status(200).sendFile(__dirname + '/public/html/login/index.html');
+	}
 });
 
 // login post //
@@ -52,6 +58,7 @@ app.post('/login', (req, res) => {
 	}
 });
 
+// Password Reset //
 app.post('/resetpassword', (req, res) => {
 	res.cookie('FID', 'flag(c0ok!e_m0n$ter_e@t_c0ok!e)', {maxAge: 12000});
 	res.status(200)
