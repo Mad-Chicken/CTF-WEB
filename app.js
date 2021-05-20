@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(session({
 	secret: "secret_key",
-	cookie: { maxAge: 30000 },
+	cookie: { maxAge: 10*60*1000 },
 	resave: false,
 	saveUninitialized: false
 }))
@@ -43,15 +43,19 @@ app.post('/login', (req, res) => {
 		res.status(200).redirect('/view');
 	} else {
 		if (req.body.username in userData && req.body.password == userData[req.body.username]) {
-			if (req.body.username === "admin" && req.body.password == userData[req.body.username]) {
-				req.session.authenticatedAdmin = true;
+			if (req.body.username === "agent" && req.body.password == userData[req.body.username]) {
+				res.status(200)
+				req.session.authenticatedAgent = true;
+				req.session.authenticated = true;
+				res.redirect('/private');
 			} else if (req.body.username === "rick") {
 				res.status(418)
 				res.redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ?autoplay=1');
+			} else {
+				res.status(200)
+				req.session.authenticated = true;
+				res.redirect('/');
 			}
-			req.session.authenticated = true;
-			res.status(200)
-			res.redirect('/view');
 		} else {
 			res.status(403).sendFile(__dirname + '/public/html/login/index.html');
 		}
@@ -60,8 +64,16 @@ app.post('/login', (req, res) => {
 
 // Password Reset //
 app.post('/resetpassword', (req, res) => {
-	res.cookie('FID', 'flag(c0ok!e_m0n$ter_e@t_c0ok!e)', {maxAge: 12000});
+	res.cookie('FID', 'flag(c0ok!e_m0nSter_eAt_c0ok!e)', {maxAge: 12000});
 	res.status(200)
+	res.redirect('/');
+});
+
+// Logout //
+app.get('/logout', (req, res) => {
+	res.status(200)
+	req.session.authenticatedAgent = false;
+	req.session.authenticated = false;
 	res.redirect('/');
 });
 
@@ -71,8 +83,8 @@ app.post('/resetpassword', (req, res) => {
 // index //
 app.get('/view', (req, res) => {
 	if (req.session.authenticated) {
-		if (req.session.authenticatedAdmin) {
-			res.status(200).sendFile(__dirname + '/public/html/view/submit/index.html');
+		if (req.session.authenticatedAgent) {
+			res.status(200).sendFile(__dirname + '/private/index.html');
 		} else {
 			res.status(200).sendFile(__dirname + '/public/html/view/index.html');
 		}
@@ -84,6 +96,83 @@ app.get('/view', (req, res) => {
 // submit //
 app.get('/submit', (req, res) => {
     res.status(200).sendFile(__dirname, '/public/html/view/submit/index.html');
+});
+
+
+//////// PRIVATE ////////
+// index //
+app.get('/private/', (req, res) => {
+	if (req.session.authenticated) {
+		if (req.session.authenticatedAgent) {
+			res.status(200).sendFile(__dirname + '/private/html/index.html');
+		} else {
+			res.status(403).sendFile(__dirname + '/public/html/fourOfour.html');
+		}
+	} else {
+		res.status(401).sendFile(__dirname + '/public/html/fourOfour.html');
+	}
+});
+
+// css //
+app.get('/private/index.css', (req, res) => {
+	if (req.session.authenticatedAgent) {
+		res.sendFile(__dirname + '/private/css/index.css');
+	} else if (req.session.authenticated) {
+		res.status(403)
+	} else {
+		res.status(401)
+	}
+});
+
+//////// MISSIONS ////////
+// index //
+app.get('/missions', (req, res) => {
+	if (req.session.authenticated) {
+		if (req.session.authenticatedAgent) {
+			res.status(200).sendFile(__dirname + '/private/html/missions/index.html');
+		} else {
+			res.status(403).sendFile(__dirname + '/public/html/fourOfour.html');
+		}
+	} else {
+		res.status(401).sendFile(__dirname + '/public/html/fourOfour.html');
+	}
+});
+
+// css //
+app.get('/private/missions.css', (req, res) => {
+	if (req.session.authenticatedAgent) {
+		res.sendFile(__dirname + '/private/css/missions.css');
+	} else if (req.session.authenticated) {
+		res.status(403)
+	} else {
+		res.status(401)
+	}
+});
+
+
+//////// MESSAGES ////////
+// index //
+app.get('/messages', (req, res) => {
+	if (req.session.authenticated) {
+		if (req.session.authenticatedAgent) {
+			res.status(200).sendFile(__dirname + '/private/html/messages/index.html');
+		} else {
+			res.status(403).sendFile(__dirname + '/public/html/fourOfour.html');
+		}
+	} else {
+		res.status(401).sendFile(__dirname + '/public/html/fourOfour.html');
+	}
+});
+
+// css //
+app.get('/private/messages.css', (req, res) => {
+	if (req.session.authenticatedAgent) {
+		res.sendFile(__dirname + '/private/css/messages.css');
+	} else if (req.session.authenticated) {
+		res.status(403)
+	} else {
+		res.status(401)
+	}
 });
 
 
