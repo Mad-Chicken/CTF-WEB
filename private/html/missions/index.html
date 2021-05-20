@@ -23,6 +23,32 @@
 			font-family: "Playfair Display";
 			letter-spacing: 3px;
 		}
+
+		/* width */
+		::-webkit-scrollbar {
+		width: 10px;
+		}
+
+		/* Track */
+		::-webkit-scrollbar-track {
+		background: #f1f1f1; 
+		}
+		
+		/* Handle */
+		::-webkit-scrollbar-thumb {
+		background: #888; 
+		}
+
+		/* Handle on hover */
+		::-webkit-scrollbar-thumb:hover {
+		background: #555; 
+		}
+		
+		body::-webkit-scrollbar-thumb {
+			background-color: #666;
+			outline: 1px solid #eee;
+		}
+		
 	</style>
 </head>
 
@@ -43,11 +69,13 @@
 	</div>
 
 	<div class="w3-col w3-padding-64 center-missions">
-	<div class="tab">
+	<div class="tab" style="Overflow-y:scroll;">
 		<button class="tablinks" onclick="openThing(event, 'M1')" id="defaultOpen">Mission #1</button>
 		<button class="tablinks" onclick="openThing(event, 'M2')">Mission #2</button>
 		<button class="tablinks" onclick="openThing(event, 'M3')">Mission #3</button>
 		<button class="tablinks" onclick="openThing(event, 'M4')">Mission #4</button>
+		<button class="tablinks" onclick="openThing(event, 'M5')">Mission #5</button>
+		<button class="tablinks" onclick="openThing(event, 'M6')">Mission #6</button>
 	</div>
 		<div id="M1" class="tabcontent">
 			<h3>Mission #1</h3>
@@ -71,6 +99,17 @@
 				<code style="width:100px;word-wrap:break-word;">1111111000101111101111111100000101010011100100000110111010000010100010111011011101011101011101011101101110100100000110101110110000010110111011010000011111111010101010101111111000000000111001100000000011111011110101011101010100011000110101011110101000010011100010000110100001101101100100010001000000011101101101101110111001110100111011100000111010000010110010100110110000101111010100010110001011111000100110100111010111111111100000000100010101000111001111111010000010101011011100000100110100110001001010111010110011011111111111011101010000101011011011101110101111100001110110110000010111100101101010011111111010011000010000111</code>
 			</div>
 		</div>
+
+		<div id="M5" class="tabcontent">
+			<h3>Mission #5</h3>
+			<p>Tokyo is the capital of Japan.</p>
+		</div>
+
+		<div id="M6" class="tabcontent">
+			<h3>Mission #6</h3>
+			<p>Tokyo is the capital of Japan.</p>
+		</div>
+
 	</div>
 
 	<script>
