@@ -158,6 +158,20 @@ app.get('/private/missions.css', (req, res) => {
 	}
 });
 
+// exif #1 //
+app.get('/missions/mission_photo.jpg', (req, res) => {
+	if (req.session.authenticated) {
+		if (req.session.authenticatedAgent) {
+			//res.status(200).sendFile(__dirname + '/private/missions/mission_photo.jpg');
+			res.status(200).download(__dirname + '/private/images/mission_photo.jpg');
+		} else {
+			res.status(403).sendFile(__dirname + '/public/html/fourOfour.html');
+		}
+	} else {
+		res.status(401).sendFile(__dirname + '/public/html/fourOfour.html');
+	}
+});
+
 
 //////// MESSAGES ////////
 // index //
