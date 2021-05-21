@@ -9,6 +9,8 @@ const app = express();
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.set('view engine', 'ejs');
+
 app.use(session({
 	secret: "secret_key",
 	cookie: { maxAge: 10*60*1000 },
@@ -17,7 +19,19 @@ app.use(session({
 }))
 
 app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/public/html/index.html');
+	//res.sendFile(__dirname + '/public/html/index.ejs');
+	var Name, URL
+	if (req.session.authenticated) {
+		Name = "Logout"
+		URL = "/logout"
+	} else {
+		Name = "Login"
+		URL = "/login"
+	}
+	res.render(__dirname + '/public/html/index.ejs', {
+		loginName: Name,
+		loginURL: URL
+	});
 });
 
 // public css //
@@ -30,7 +44,7 @@ app.use(express.static('public/images'))
 app.get('/login', (req, res) => {
 	res.clearCookie('FID');
 	if (req.session.authenticated) {
-		res.status(200).redirect('/view');
+		res.status(200).redirect('/admin');
 	} else {
 		res.status(200).sendFile(__dirname + '/public/html/login/index.html');
 	}
@@ -40,7 +54,7 @@ app.get('/login', (req, res) => {
 app.post('/login', (req, res) => {
 	var userData = JSON.parse(fs.readFileSync(__dirname + '/private/login.cred','utf8'));
 	if (req.session.authenticated) {
-		res.status(200).redirect('/view');
+		res.status(200).redirect('/admin');
 	} else {
 		if (req.body.username in userData && req.body.password == userData[req.body.username]) {
 			if (req.body.username === "agent" && req.body.password == userData[req.body.username]) {
@@ -78,24 +92,19 @@ app.get('/logout', (req, res) => {
 });
 
 
-//////// VIEW ////////
+//////// Admin ////////
 
 // index //
-app.get('/view', (req, res) => {
+app.get('/admin', (req, res) => {
 	if (req.session.authenticated) {
 		if (req.session.authenticatedAgent) {
 			res.status(200).sendFile(__dirname + '/private/index.html');
 		} else {
-			res.status(200).sendFile(__dirname + '/public/html/view/index.html');
+			res.status(200).sendFile(__dirname + '/public/html/admin/index.html');
 		}
 	} else {
 		res.status(401).sendFile(__dirname + '/public/html/fourOfour.html');
 	}
-});
-
-// submit //
-app.get('/submit', (req, res) => {
-    res.status(200).sendFile(__dirname, '/public/html/view/submit/index.html');
 });
 
 
@@ -164,15 +173,11 @@ app.get('/messages', (req, res) => {
 	}
 });
 
-// css //
-app.get('/private/messages.css', (req, res) => {
-	if (req.session.authenticatedAgent) {
-		res.sendFile(__dirname + '/private/css/messages.css');
-	} else if (req.session.authenticated) {
-		res.status(403)
-	} else {
-		res.status(401)
-	}
+
+// hidden flag //
+app.get('/admin/flag.html', (req, res) => {
+	res.status(200)
+	res.sendFile(__dirname + '/public/html/admin/flag.html');
 });
 
 
@@ -193,7 +198,7 @@ app.get('/robots.txt', function (req, res) {
 
 User-agent: *
 Disallow: /
-Disallow: /admin/page.html`);
+Disallow: /admin/flag.html`);
 });
 
 //////// 404 ////////

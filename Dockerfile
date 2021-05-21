@@ -4,7 +4,7 @@ WORKDIR /home/node/
 RUN apt-get update
 
 RUN npm init -y
-RUN npm install --save express cookie-parser body-parser express-session
+RUN npm install --save express cookie-parser body-parser express-session ejs
 COPY . .
 
 CMD ["node","/home/node/app.js"]
