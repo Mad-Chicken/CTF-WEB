@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<title>Captured Website</title>
+	<style>
+		.btn {
+			background-color: DodgerBlue;
+			border: none;
+			color: white;
+			padding: 6px 10px;
+			cursor: pointer;
+			font-size: 14px;
+		}
+
+		/* Darker background on mouse-over */
+		.btn:hover {
+			background-color: RoyalBlue;
+		}
+	</style>
+</head>
+<body>
+	<div class="w3-center w3-padding-64">
+		<form action="/missions/capturedWebsite/" method="POST">
+			<button class="btn w3-bar-item w3-button">Login</button>
+			<p><%= data %></p>		
+		</form>
+	</div>
+</body>
+</html>

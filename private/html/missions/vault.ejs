@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<title>vault</title>
+	<style>
+		body {
+			font-family: "Times New Roman", Georgia, Serif;
+			background-color: #ffffff;
+		}
+
+		h1,
+		h2,
+		h4,
+		h5,
+		h6 {
+			font-family: "Playfair Display";
+			letter-spacing: 3px;
+		}
+		.slider-wrapper {
+			display: inline-block;
+			width: 20px;
+			height: 150px;
+			padding: 0;
+		}
+
+		.slider-wrapper input {
+			width: 150px;
+			height: 20px;
+			margin: 0;
+			transform-origin: 75px 75px;
+			transform: rotate(-90deg);
+		}
+	</style>
+</head>
+<body>
+	<!-- Navbar (sit on top) -->
+	<div class="w3-top" style="background-color: rgb(210, 214, 214);">
+		<div class="w3-bar w3-padding w3-card"
+			style="letter-spacing:4px;color: black;background-color: rgb(255, 255, 255);">
+			<a href="/#home" class="w3-bar-item w3-button">Gourmet au Catering</a>
+			<div class="w3-right w3-hide-small">
+				<a href="/private" class="w3-bar-item w3-button">Menu</a>
+				<a href="/missions" class="w3-bar-item w3-button">Missions</a>
+				<a href="/messages" class="w3-bar-item w3-button">Messages</a>
+				<a href="/logout" class="w3-bar-item w3-button">Logout</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="w3-row w3-padding-64">
+		<div class="m6" style="padding:48px">
+			<div class="slider-wrapper">
+				<input type="range" name="myInput" step="1" value="<%= loginURL %>" min="0" max="100" required>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
