@@ -281,11 +281,24 @@ app.post('/missions/vault/', (req, res) => {
 	}
 });
 
-// Find location //
+// Find location reverse //
 app.get('/missions/find_location.jpg', (req, res) => {
 	if (req.session.authenticated) {
 		if (req.session.authenticatedAgent) {
 			res.status(200).download(__dirname + '/private/images/find_location.jpg');
+		} else {
+			res.status(403);
+		}
+	} else {
+		res.status(401);
+	}
+});
+
+// Find location //
+app.get('/missions/geo_find.png', (req, res) => {
+	if (req.session.authenticated) {
+		if (req.session.authenticatedAgent) {
+			res.status(200).download(__dirname + '/private/images/geo_find.png');
 		} else {
 			res.status(403);
 		}
