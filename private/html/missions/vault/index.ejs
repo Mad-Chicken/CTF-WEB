@@ -34,6 +34,19 @@
 			transform-origin: 75px 75px;
 			transform: rotate(-90deg);
 		}
+		.btn {
+			background-color: DodgerBlue;
+			border: none;
+			color: white;
+			padding: 6px 10px;
+			cursor: pointer;
+			font-size: 14px;
+		}
+
+		/* Darker background on mouse-over */
+		.btn:hover {
+			background-color: RoyalBlue;
+		}
 	</style>
 </head>
 <body>
@@ -52,11 +65,27 @@
 	</div>
 
 	<div class="w3-row w3-padding-64">
-		<div class="m6" style="padding:48px">
-			<div class="slider-wrapper">
-				<input type="range" name="myInput" step="1" value="<%= loginURL %>" min="0" max="100" required>
+		<form action="/missions/vault/" method="POST">
+			<div class="m6" style="padding:48px; text-align:center;">
+				<div>
+					<div style="margin-left:1.5em;margin-right:1.5em;" class="slider-wrapper">
+						<input type="range" name="input0" step="1" value="<%= data0 %>" min="0" max="10" required>
+					</div>
+					<div style="margin-left:1.5em;margin-right:1.5em;" class="slider-wrapper">
+						<input type="range" name="input1" step="1" value="<%= data1 %>" min="0" max="10" required>
+					</div>
+					<div style="margin-left:1.5em;margin-right:1.5em;" class="slider-wrapper">
+						<input type="range" name="input2" step="1" value="<%= data2 %>" min="0" max="10" required>
+					</div>
+				</div>
+				<div style="padding:32px;">
+					<button class="btn w3-bar-item w3-button">Submit</button>
+				</div>
+				<div>
+					<p><%= payload %></p>
+				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 
 </body>

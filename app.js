@@ -225,18 +225,74 @@ app.get('/missions/capturedWebsite/', (req, res) => {
 	}
 });
 
+// capture website M1 //
 app.post('/missions/capturedWebsite/', (req, res) => {
-	res.status(200)
-	if (req.cookies['admin'] == "true") {
-		res.render(__dirname + '/private/html/missions/capturedWebsite/index.ejs', {
-			data: "flag(cH@nge_c00k!e_2_e@t_?)"
-		});
+	if (req.session.authenticatedAgent) {
+		res.status(200)
+		if (req.cookies['admin'] == "true") {
+			res.render(__dirname + '/private/html/missions/capturedWebsite/index.ejs', {
+				data: "flag(cH@nge_c00k!e_2_e@t_?)"
+			});
+		} else {
+			res.redirect("/missions/capturedWebsite/");
+		}
+	} else if (req.session.authenticated) {
+		res.status(403);
 	} else {
-		res.redirect("/missions/capturedWebsite/");
+		res.status(401);
 	}
 });
 
+// Post M5 //
+app.post('/missions/postman/', (req, res) => {
+	res.status(200);
+	res.send("flag(p0$t_p0$t3d_p0$t_m3$$@ge)");
+});
 
+// vault //
+app.get('/missions/vault/', (req, res) => {
+	if (req.session.authenticatedAgent) {
+		res.status(200)
+		res.render(__dirname + '/private/html/missions/vault/index.ejs', {
+			data0: Math.random() * 11,
+			data1: Math.random() * 11,
+			data2: Math.random() * 11,
+			payload: ""
+		});
+	} else if (req.session.authenticated) {
+		res.status(403);
+	} else {
+		res.status(401);
+	}
+});
+
+app.post('/missions/vault/', (req, res) => {
+	res.status(200);
+	if (req.body.input0 == 4 && req.body.input1 == 2 && req.body.input2 == 0)  {
+		console.log(`Vault attempt ${req.body.input0} ${req.body.input1} ${req.body.input2}`);
+		res.render(__dirname + '/private/html/missions/vault/index.ejs', {
+			data0: Math.random() * 11,
+			data1: Math.random() * 11,
+			data2: Math.random() * 11,
+			payload: "flag(Nice_v3ry_v3ry__v3ry_n!ce)"
+		});
+	} else {
+		res.redirect('/missions/vault');
+	}
+});
+
+// Find location //
+app.get('/missions/find_location.jpg', (req, res) => {
+	if (req.session.authenticated) {
+		if (req.session.authenticatedAgent) {
+			res.status(200).download(__dirname + '/private/images/find_location.jpg');
+		} else {
+			res.status(403);
+		}
+	} else {
+		res.status(401);
+	}
+});
 
 //////// MESSAGES ////////
 // index //
