@@ -61,7 +61,7 @@ app.post('/login', (req, res) => {
 				res.status(200)
 				req.session.authenticatedAgent = true;
 				req.session.authenticated = true;
-				res.redirect('/private');
+				res.redirect('/missions');
 			} else if (req.body.username === "rick") {
 				res.status(418)
 				res.redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ?autoplay=1');
@@ -98,7 +98,7 @@ app.get('/logout', (req, res) => {
 app.get('/admin', (req, res) => {
 	if (req.session.authenticated) {
 		if (req.session.authenticatedAgent) {
-			res.status(200).sendFile(__dirname + '/private/html/index.html');
+			res.status(200).sendFile(__dirname + '/private/html/missions/index.html');
 		} else {
 			res.status(200).sendFile(__dirname + '/public/html/admin/index.html');
 		}
@@ -110,6 +110,7 @@ app.get('/admin', (req, res) => {
 
 //////// PRIVATE ////////
 // index //
+/*
 app.get('/private/', (req, res) => {
 	if (req.session.authenticated) {
 		if (req.session.authenticatedAgent) {
@@ -121,6 +122,7 @@ app.get('/private/', (req, res) => {
 		res.status(401).sendFile(__dirname + '/public/html/fourOfour.html');
 	}
 });
+*/
 
 // css //
 app.get('/private/index.css', (req, res) => {
