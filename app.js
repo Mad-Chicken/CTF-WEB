@@ -279,41 +279,17 @@ app.get('/missions/geo_find.png', (req, res) => {
 
 // hash 0 //
 app.get('/missions/hash0', (req, res) => {
-	if (req.session.authenticated) {
-		if (req.session.authenticatedAgent) {
-			res.status(200).download(__dirname + '/private/cipher/hash_0');
-		} else {
-			res.status(403);
-		}
-	} else {
-		res.status(401);
-	}
+	res.status(200).download(__dirname + '/private/cipher/hash_0');
 });
 
 // hash 1 //
 app.get('/missions/hash1', (req, res) => {
-	if (req.session.authenticated) {
-		if (req.session.authenticatedAgent) {
-			res.status(200).download(__dirname + '/private/cipher/hash_1');
-		} else {
-			res.status(403);
-		}
-	} else {
-		res.status(401);
-	}
+	res.status(200).download(__dirname + '/private/cipher/hash_1');
 });
 
 // hash 2 //
 app.get('/missions/hash2', (req, res) => {
-	if (req.session.authenticated) {
-		if (req.session.authenticatedAgent) {
-			res.status(200).download(__dirname + '/private/cipher/hash_2');
-		} else {
-			res.status(403);
-		}
-	} else {
-		res.status(401);
-	}
+	res.status(200).download(__dirname + '/private/cipher/hash_2');
 });
 
 //////// MESSAGES ////////
