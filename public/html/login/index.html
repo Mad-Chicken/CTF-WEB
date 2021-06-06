@@ -6,24 +6,27 @@
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<link rel="stylesheet" type="text/css" href="/login.css" media="screen"/>
 		<style>
-		body {font-family: "Times New Roman", Georgia, Serif; background-color:#ffffff;}
-		h1, h2, h3, h4, h5, h6 {
-		font-family: "Playfair Display";
-		letter-spacing: 5px;
+		body {
+			font-family: "Condiment", Condiment, handwriting;
+			background-color:#ffffff;
 		}
-		
+		h1, h2, h3, h4, h5, h6 {
+			font-family: "Playfair Display";
+			letter-spacing: 1.6px;
+		}
+
 		</style>
 	</head>
 	<body>
 		<!-- Navbar (sit on top) -->
 		<div class="w3-top" style="background-color: rgb(210, 214, 214);">
-			<div class="w3-bar w3-padding w3-card" style="letter-spacing:4px;color: black;background-color: rgb(255, 255, 255);">
-				<a href="/#home" class="w3-bar-item w3-button">Gourmet au Catering</a>
+			<div class="w3-bar w3-padding w3-card" style="letter-spacing:2px;color: black;background-color: rgb(255, 255, 255);">
+				<a href="/#home" class="w3-bar-item w3-button" style="font-size: 15px;" >Lyi Algaea</a>
 				<!-- Right-sided navbar links. Hide them on small screens -->
 				<div class="w3-right w3-hide-small">
 					<a href="/admin" class="w3-bar-item w3-button">Admin</a>
 					<a href="/#about" class="w3-bar-item w3-button">About</a>
-					<a href="/#menu" class="w3-bar-item w3-button">Menu</a>
+					<a href="/#menu" class="w3-bar-item w3-button">Recipies</a>
 					<a href="/login" class="w3-bar-item w3-button">Login</a>
 				</div>
 			</div>
@@ -41,7 +44,7 @@
 			<input type="submit" name="Login" value="login" class="login-submit" />
 		</form>
 		<form action="/resetpassword" method="POST">
-			<button class="login-forgot-pass">forgot password?</button>			
+			<button class="login-forgot-pass">forgot password?</button>
 		</form>
 
 		  <!-- Rick can you update your password with neverGiveUp -->

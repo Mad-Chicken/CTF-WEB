@@ -160,28 +160,12 @@ app.get('/private/missions.css', (req, res) => {
 
 // exif #1 //
 app.get('/missions/mission_photo.jpg', (req, res) => {
-	if (req.session.authenticated) {
-		if (req.session.authenticatedAgent) {
-			res.status(200).download(__dirname + '/private/images/mission_photo.jpg');
-		} else {
-			res.status(403);
-		}
-	} else {
-		res.status(401);
-	}
+	res.status(200).download(__dirname + '/private/images/mission_photo.jpg');
 });
 
 // exif location #2 //
 app.get('/missions/mission_location_photo.png', (req, res) => {
-	if (req.session.authenticated) {
-		if (req.session.authenticatedAgent) {
-			res.status(200).download(__dirname + '/private/images/mission_location_photo.png');
-		} else {
-			res.status(403);
-		}
-	} else {
-		res.status(401);
-	}
+	res.status(200).download(__dirname + '/private/images/mission_location_photo.png');
 });
 
 // browser //
@@ -283,9 +267,19 @@ app.post('/missions/vault/', (req, res) => {
 
 // Find location reverse //
 app.get('/missions/find_location.jpg', (req, res) => {
+	res.status(200).download(__dirname + '/private/images/find_location.jpg');
+});
+
+// Find location //
+app.get('/missions/geo_find.png', (req, res) => {
+	res.status(200).download(__dirname + '/private/images/geo_find.png');
+});
+
+// hash 0 //
+app.get('/missions/hash0', (req, res) => {
 	if (req.session.authenticated) {
 		if (req.session.authenticatedAgent) {
-			res.status(200).download(__dirname + '/private/images/find_location.jpg');
+			res.status(200).download(__dirname + '/private/cipher/hash_0');
 		} else {
 			res.status(403);
 		}
@@ -294,11 +288,24 @@ app.get('/missions/find_location.jpg', (req, res) => {
 	}
 });
 
-// Find location //
-app.get('/missions/geo_find.png', (req, res) => {
+// hash 1 //
+app.get('/missions/hash1', (req, res) => {
 	if (req.session.authenticated) {
 		if (req.session.authenticatedAgent) {
-			res.status(200).download(__dirname + '/private/images/geo_find.png');
+			res.status(200).download(__dirname + '/private/cipher/hash_1');
+		} else {
+			res.status(403);
+		}
+	} else {
+		res.status(401);
+	}
+});
+
+// hash 2 //
+app.get('/missions/hash2', (req, res) => {
+	if (req.session.authenticated) {
+		if (req.session.authenticatedAgent) {
+			res.status(200).download(__dirname + '/private/cipher/hash_2');
 		} else {
 			res.status(403);
 		}

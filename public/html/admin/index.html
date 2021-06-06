@@ -5,7 +5,7 @@
 	<link rel="icon" type="image/png" href="/favicon.png">
 	<style>
 		body {
-			font-family: "Times New Roman", Georgia, Serif;
+			font-family: "Condiment", Condiment, handwriting;
 			background-color: #ffffff;
 		}
 
@@ -16,40 +16,95 @@
 		h5,
 		h6 {
 			font-family: "Playfair Display";
-			letter-spacing: 5px;
+			letter-spacing: 1.6px;
 		}
-
 		/* width */
 		::-webkit-scrollbar {
 			width: 15px;
 		}
-
 		/* Track */
 		::-webkit-scrollbar-track {
-			background: #f1f1f1; 
+			background: #f1f1f1;
 		}
-			
 		/* Handle */
 		::-webkit-scrollbar-thumb {
-			background: #888; 
+			background: #888;
 		}
-
 		/* Handle on hover */
 		::-webkit-scrollbar-thumb:hover {
-			background: #555; 
-		} 
+			background: #555;
+		}
+		.frame {
+		  width: 90%;
+		  margin: 50px auto;
+		  text-align: center;
+		}
+		button {
+		  margin: 30px 45px;
+		  outline: none;
+		}
+		.custom-btn {
+		  width: 200px;
+		  height: 60px;
+		  padding: 10px 25px;
+		  border: 2px solid #000;
+		  font-family: 'Lato', sans-serif;
+		  font-weight: 500;
+		  background: transparent;
+		  cursor: pointer;
+		  transition: all 0.3s ease;
+		  position: relative;
+		  display: inline-block;
+		}
+		.btn-1 {
+		  transition: all 0.3s ease;
+		}
+		.btn-1:hover {
+		   box-shadow:
+		   -7px -7px 20px 0px #fff9,
+		   -4px -4px 5px 0px #fff9,
+		   7px 7px 20px 0px #0002,
+		   4px 4px 5px 0px #0001;
+		}
+		.btn-11 {
+		  overflow: hidden;
+		  transition: all 0.3s ease;
+		}
+		.btn-11:before {
+		    position: absolute;
+		    content: '';
+		    display: inline-block;
+		    top: -180px;
+		    left: 0;
+		    width: 30px;
+		    height: 100%;
+		    background-color: #fff;
+		    animation: shiny-btn1 3s ease-in-out infinite;
+		}
+		.btn-11:active{
+		  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+		              -4px -4px 6px 0 rgba(116, 125, 136, .2),
+		    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+		    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+		}
+		@-webkit-keyframes shiny-btn1 {
+		    0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
+		    80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
+		    81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
+		    100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
+		}
 	</style>
 <body>
 
 	<!-- Navbar (sit on top) -->
 	<div class="w3-top" style="background-color: rgb(210, 214, 214);">
-		<div class="w3-bar w3-padding w3-card" style="letter-spacing:4px;color: black;background-color: rgb(255, 255, 255);">
-		<a href="/#home" class="w3-bar-item w3-button">Gourmet au Catering</a>
+		<div class="w3-bar w3-padding w3-card" style="letter-spacing:2px;color: black;background-color: rgb(255, 255, 255);">
+		<a href="/#home" class="w3-bar-item w3-button" style="font-size: 15px;" >Lyi Algaea</a>
 		<!-- Right-sided navbar links. Hide them on small screens -->
 		<div class="w3-right w3-hide-small">
 			<a href="/admin" class="w3-bar-item w3-button">Admin</a>
 			<a href="/#about" class="w3-bar-item w3-button">About</a>
-			<a href="/#menu" class="w3-bar-item w3-button">Menu</a>
+			<a href="/#menu" class="w3-bar-item w3-button">Recipies</a>
 			<a href="/logout" class="w3-bar-item w3-button">Logout</a>
 		</div>
 		</div>
@@ -57,18 +112,32 @@
 
 	<div class="w3-row w3-padding-64">
 		<div class="m6" style="padding:48px">
-			<h5 class="w3-center">Admin Pannel</h5>
-			<p class="w3-large">The Catering was founded in blabla by Mr. Smith in lorem ipsum dolor sit amet, consectetur
-				adipiscing elit consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-				aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute iruredolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-				pariatur.We only use seasonal ingredients.</p>
-			<p class="w3-large">Excepteur sint occaecat cupidatat non proident, sunt in culpa
-				qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod temporincididunt
-				ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-				aliquip ex ea commodo consequat.</p>
+			<h5 class="w3-center" style="margin: 30px auto;">Automation Control Desk</h5>
+			<p class="w3-large" style="margin: auto 50px;">Monitor and control functions of Lyi Algaea remotely from the comforts of your home and while disregarding security procedures. <span style="color:red;">Currently some systems are down due to the resent loss of Dwight Donato the fourth and the respecting family fight over the inheritance.</span></p>
+			<div class="frame">
+	  			<button class="custom-btn btn-1">Grow Algae</button>
+				<button class="custom-btn btn-1 btn-11" onclick="window.location.href='https://github.com/Mad-Chicken/';" >Plug</button>
+				<button class="custom-btn btn-1">Fertilize Algae</button>
+				<button class="custom-btn btn-1">Harvest Algae</button>
+				<button class="custom-btn btn-1">Start Filtration Cycle</button>
+				<button class="custom-btn btn-1">Noodle Extruder</button>
+				<button class="custom-btn btn-1 btn-11" onclick="window.location.href='https://puginarug.com/';" >Pug</button>
+				<button class="custom-btn btn-1">Burger Condenser</button>
+				<button class="custom-btn btn-1">Flavor Maker 3000</button>
+				<button class="custom-btn btn-1">Button</button>
+				<button class="custom-btn btn-1 btn-11" onclick="window.location.href='https://thatsthefinger.com/';" >Company Anger Manager</button>
+				<button class="custom-btn btn-1 btn-11">Call Agency</button> <!-- Currently their phone system is down login with agent:8HKEZEYB9L6YD8Y9 -->
+				<button class="custom-btn btn-1">Power Down System</button>
+				<button class="custom-btn btn-1">Shutdown website</button>
+				<button class="custom-btn btn-1 btn-11" onclick="window.location.href='https://therandombutton.github.io/random.html';" >Random</button>
+				<button class="custom-btn btn-1">Experimental Algae Cheese</button>
+				<button class="custom-btn btn-1" onclick="window.location.href='https://www.youtube.com/watch?v=dQw4w9WgXcQ?autoplay=1';" >Flag</button>
+				<button class="custom-btn btn-1">Secret Sauce Recipe</button>
+				<button class="custom-btn btn-1">Health Care</button>
+				<button class="custom-btn btn-1 btn-11" onclick="window.location.href='https://www.youtube.com/watch?v=pUAe_RwkfNk';" >Golden</button><!-- please give more views ;p -->
+			</div>
 		</div>
 	</div>
-  
+
 
 </body>
