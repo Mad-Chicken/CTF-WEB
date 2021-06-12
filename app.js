@@ -3,7 +3,8 @@ var cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const fs = require('fs');
-const e = require('express');
+
+var https = require('https')
 
 const port = 3000
 const app = express();
@@ -109,20 +110,6 @@ app.get('/admin', (req, res) => {
 
 
 //////// PRIVATE ////////
-// index //
-/*
-app.get('/private/', (req, res) => {
-	if (req.session.authenticated) {
-		if (req.session.authenticatedAgent) {
-			res.status(200).sendFile(__dirname + '/private/html/index.html');
-		} else {
-			res.status(403).sendFile(__dirname + '/public/html/fourOfour.html');
-		}
-	} else {
-		res.status(401).sendFile(__dirname + '/public/html/fourOfour.html');
-	}
-});
-*/
 
 // css //
 app.get('/private/index.css', (req, res) => {
@@ -340,6 +327,10 @@ app.all('*', (req,res)=>{
 });
 
 //////// Listener ////////
-app.listen(port, function(){
+https.createServer({
+	key: fs.readFileSync('server.key'),
+	cert: fs.readFileSync('server.cert')
+}, app)
+.listen(3000, function () {
 	console.log('Server started on port :' + port);
-});
+})
