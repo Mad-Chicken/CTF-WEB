@@ -1,5 +1,5 @@
 FROM node:14
-EXPOSE 3000
+EXPOSE 80
 WORKDIR /home/node/
 RUN apt-get update
 

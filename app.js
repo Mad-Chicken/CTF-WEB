@@ -6,7 +6,7 @@ const fs = require('fs');
 
 var https = require('https')
 
-const port = 3000
+const port = 80
 const app = express();
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -331,6 +331,6 @@ https.createServer({
 	key: fs.readFileSync('server.key'),
 	cert: fs.readFileSync('server.cert')
 }, app)
-.listen(3000, function () {
+.listen(port, function () {
 	console.log('Server started on port :' + port);
 })
