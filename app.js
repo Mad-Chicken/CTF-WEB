@@ -4,9 +4,9 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 
-var https = require('https')
+var https = require('https');
+const http = require('http');
 
-const port = 80
 const app = express();
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -326,11 +326,20 @@ app.all('*', (req,res)=>{
 	res.status(404).sendFile(__dirname + '/public/html/fourOfour.html');
 });
 
+
 //////// Listener ////////
-https.createServer({
-	key: fs.readFileSync('server.key'),
-	cert: fs.readFileSync('server.cert')
-}, app)
-.listen(port, function () {
-	console.log('Server started on port :' + port);
-})
+const httpsServer = https.createServer({
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
+}, app);
+
+httpsServer.listen(443, () => {
+    console.log('HTTPS Server running on port: 443');
+});
+
+http.createServer(function(req, res) {
+  res.writeHead(301, {
+    Location: "https://" + req.headers["host"].replace("www.", "") + req.url
+  });
+  res.end();
+}).listen(80);

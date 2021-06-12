@@ -1,5 +1,6 @@
 FROM node:14
 EXPOSE 80
+EXPOSE 443
 WORKDIR /home/node/
 RUN apt-get update
 
