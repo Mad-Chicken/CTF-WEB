@@ -4,7 +4,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 
-var https = require('https');
+const https = require('https');
 const http = require('http');
 
 const app = express();
@@ -187,7 +187,6 @@ app.get('/missions/browser/', (req, res) => {
 app.get('/missions/capturedWebsite/', (req, res) => {
 	if (req.session.authenticatedAgent) {
 		res.cookie('admin', 'false', {maxAge: 60000});
-		//res.sendFile(__dirname + '/private/html/missions/capturedWebsite/index.html');
 		res.render(__dirname + '/private/html/missions/capturedWebsite/index.ejs', {
 			data: ""
 		});
@@ -329,12 +328,13 @@ app.all('*', (req,res)=>{
 
 //////// Listener ////////
 const httpsServer = https.createServer({
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.cert')
+	key: fs.readFileSync('cert/private.key.pem', 'utf8'),
+    cert: fs.readFileSync('cert/domain.cert.pem', 'utf8'),
+	ca: fs.readFileSync('cert/intermediate.cert.pem', 'utf8')
 }, app);
 
 httpsServer.listen(443, () => {
-    console.log('HTTPS Server running on port: 443');
+	console.log('HTTPS Server running on port: 443');
 });
 
 http.createServer(function(req, res) {
