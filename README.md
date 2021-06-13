@@ -1,1 +1,1 @@
-foo
+# Revoke cert keys
