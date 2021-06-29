@@ -147,6 +147,7 @@ app.get('/private/missions.css', (req, res) => {
 	}
 });
 
+/*
 // exif #1 //
 app.get('/missions/mission_photo.jpg', (req, res) => {
 	res.status(200).download(__dirname + '/private/images/mission_photo.jpg');
@@ -156,6 +157,7 @@ app.get('/missions/mission_photo.jpg', (req, res) => {
 app.get('/missions/mission_location_photo.png', (req, res) => {
 	res.status(200).download(__dirname + '/private/images/mission_location_photo.png');
 });
+*/
 
 // browser //
 app.get('/missions/browser/', (req, res) => {
@@ -253,6 +255,7 @@ app.post('/missions/vault/', (req, res) => {
 	}
 });
 
+/*
 // Find location reverse //
 app.get('/missions/find_location.jpg', (req, res) => {
 	res.status(200).download(__dirname + '/private/images/find_location.jpg');
@@ -277,6 +280,7 @@ app.get('/missions/hash1', (req, res) => {
 app.get('/missions/hash2', (req, res) => {
 	res.status(200).download(__dirname + '/private/cipher/hash_2');
 });
+*/
 
 //////// MESSAGES ////////
 // index //
